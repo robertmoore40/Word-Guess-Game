@@ -1,13 +1,13 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+ <title>Hangman!</title>
 </head>
 <body>
-<script>
+        <h1>Big Rob's Guessing Game</h1>
+        <script>
+
 
 // Introduction
 
@@ -22,9 +22,8 @@ else {
     console.log("I see you're more of a Yu-gi-oh type")
 }
 
-// Word Array and Choice
-
-var words = [
+ // Create an array of words
+    var words = [
     "pikachu",
     "bulbasaur",
     "venusaur",
@@ -47,47 +46,56 @@ var words = [
     "mew",
     "mewtow",
     "porygon",
-    "jolteon",
-];
+    "jolteon"
+        ];
+// Pick a random word
+        var word = words[Math.floor(Math.random() * words.length)];
+        
+// Set up the answer array
+        
+        var answerArray = [];
+        for (var i = 0; i < word.length; i++) {
+        answerArray[i] = "_";
+        }
+        var remainingLetters = word.length;
 
+// The game loop
+        
+        while (remainingLetters > 0) {
+        
+// Show the player their progress
+        
+        alert(answerArray.join(" "));
 
-var word = words[Math.floor(Math.random() * words.length)]
-
-// Answer Array
-
-var answerArray = [];
-for (var i = 0; i < word.length; i++) {
-    answerArray[i] = "_";
-}
-
-var remainingLetters = word.length;
-
-// Game Loop
-
-while (remainingLetters > 0 ) {
-    // Game Code -
-    // Game Progress -
-
-    alert(answerArray.join (" "));
-
-    // Player Input -
-
-    var guess = prompt("Choose a letter, or click cancel to end the game if you're not the very best, like no one ever was.");
-
-    if (guess === null) {
+// Get a guess from the player
+        
+        var guess = prompt("Choose a letter, or click cancel to end the game if you're not the very best, like no one ever was.");
+        if (guess === null) {
+        
+// Exit the game loop
+        
         break;
-    } else if (guess.length !== 1) {
-        alert("Enter a letter") ;
-    } else {
-        // update game state
-    }
+        } else if (guess.length !== 1) {
+        alert("Enter one letter");
+        } else {
 
-    // Answer array and remaining letters update ; 
-
-
-}
-
-</script>
-    
+// Update the game state with the guess
+        
+        for (var j = 0; j < word.length; j++) {
+        if (word[j] === guess) {
+        answerArray[j] = guess;
+        remainingLetters--;
+        }
+        }
+        }
+        // The end of the game loop
+ }
+ // Show the answer and congratulate the player
+ alert(answerArray.join(" "));
+ alert("Wow you're super effect!  " + word);
+ </script>
 </body>
 </html>
+
+
+
