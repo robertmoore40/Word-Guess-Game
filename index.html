@@ -25,9 +25,9 @@ else {
  // Create variables and array
 
     
-    var remainingGuesses
+    // var remainingGuesses = 10 ;
 
-    var gameScore = gameScore + 1;
+    // var gameScore = gameScore + 1;
     
     var words = [
     "pikachu",
@@ -64,6 +64,7 @@ else {
         answerArray[i] = "_";
         }
         var remainingLetters = word.length;
+        // var remainingGuesses ="10";
 
 // The game loop
         
@@ -91,6 +92,7 @@ else {
         if (word[j] === guess) {
         answerArray[j] = guess;
         remainingLetters--;
+        // remainingGuesses--;
         }
         }
         }
