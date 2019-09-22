@@ -14,7 +14,7 @@
 var name = prompt("What's your name?");
     console.log("Hello " + name);
 
-var likesPokemans = confirm("Do you like pokemans?");
+var likesPokemans = confirm("So I heard you like pokemans");
 if (likesPokemans) {
     console.log("Totally tubular");
 }
@@ -25,32 +25,67 @@ else {
 // Word Array and Choice
 
 var words = [
-    "pikachu"
-    "bulbasaur"
-    "venusaur"
-    "charmander"
-    "charizard"
-    "eevee"
-    "weedle"
-    "pidgey"
-    "rattata"
-    "vulpix"
-    "zubat"
-    "oddish"
-    "diglet"
-    "meowth"
-    "machoke"
-    "gyarados"
-    "magikarp"
-    "goldeen"
-    "snorlax"
-    "mew"
-    "mewtow"
-    "porygon"
-    "jolteon"
-]
+    "pikachu",
+    "bulbasaur",
+    "venusaur",
+    "charmander",
+    "charizard",
+    "eevee",
+    "weedle",
+    "pidgey",
+    "rattata",
+    "vulpix",
+    "zubat",
+    "oddish",
+    "diglet",
+    "meowth",
+    "machoke",
+    "gyarados",
+    "magikarp",
+    "goldeen",
+    "snorlax",
+    "mew",
+    "mewtow",
+    "porygon",
+    "jolteon",
+];
 
 
+var word = words[Math.floor(Math.random() * words.length)]
+
+// Answer Array
+
+var answerArray = [];
+for (var i = 0; i < word.length; i++) {
+    answerArray[i] = "_";
+}
+
+var remainingLetters = word.length;
+
+// Game Loop
+
+while (remainingLetters > 0 ) {
+    // Game Code -
+    // Game Progress -
+
+    alert(answerArray.join (" "));
+
+    // Player Input -
+
+    var guess = prompt("Choose a letter, or click cancel to end the game if you're not the very best, like no one ever was.");
+
+    if (guess === null) {
+        break;
+    } else if (guess.length !== 1) {
+        alert("Enter a letter") ;
+    } else {
+        // update game state
+    }
+
+    // Answer array and remaining letters update ; 
+
+
+}
 
 </script>
     
