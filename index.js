@@ -4,7 +4,7 @@
 
 // Arrays var declared
 
-//Array containing possible pokemon
+//Array containing possible pokemon. 
 
 var chooseRandomPokemon =[
     "pikachu",
@@ -143,7 +143,7 @@ function startGame()
 
 function compareLetters(userKey)
 {
-				console.log('codeworking');
+				console.log('working');
 				//If input exists in word, call this function 
 				if(choosenWord.indexOf(userKey) > -1)
 				{
@@ -187,7 +187,7 @@ function winOrLoss()
 		winCount++;
 		//Changes HTML
 		document.getElementById('winCounter').innerHTML = winCount;
-		alert(" You win! You're the best that ever was!");
+		alert(" You win! You're the best that ever was! Let's have a rematch!");
 
 		// calls reset function
 

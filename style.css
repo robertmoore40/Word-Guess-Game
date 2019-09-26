@@ -10,14 +10,14 @@
 }
 
 
-
 .jumbotron{
-    color:black;
+    color:whitesmoke;
     text-align:center;
-    background-color:aliceblue;
+    background-color:black;
     
 }
 
 .panel-default>.panel-heading {
-    background-color:aliceblue;
+    background-color:black;
+    color:whitesmoke;
 }
