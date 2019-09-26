@@ -9,7 +9,11 @@ var doubleWord = ['a','b','c',
 				  's','t','u',
 				  'v','w','x',
 				  'y','z'];
+
+
 //Holds the all the words
+
+
 var chooseRandomPokemon =[
     "pikachu",
     "bulbasaur",
