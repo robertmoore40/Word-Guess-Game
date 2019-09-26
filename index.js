@@ -1,5 +1,9 @@
 // Javascript Code
 
+// Variables declared first, arrays then choosenWord, letters, and counters
+
+// Arrays var declared
+
 //Array containing possible pokemon
 
 var chooseRandomPokemon =[
@@ -30,7 +34,9 @@ var chooseRandomPokemon =[
 
 // Used to record how many times a letter can be pressed. Once a guess has been tried, it cannot be tried again
 
-var doubleWord = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+var possibleKeyInputs = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+
+// All declared variables sans arrays
 
 //Holds chooseRandomPokemon
 
@@ -42,13 +48,13 @@ var lettersInWord = [];
 
 //Holds number of blanks in pokemon chosen
 
-var numBlanks = 0;
+var numberOfBlanks = 0;
 
 //Holds blanks for created array and successful guesses
 
 var blanksAndSuccesses =[];
 
-//Holds wrong guesses
+//"Holds" wrong guesses
 
 var wrongLetters = [];
 
@@ -60,8 +66,8 @@ var guessesLeft = 10;
 var rightGuessCounter = 0;
 
 
-//FUNCTIONS
-//----------------------------------------
+//Functions for game use 
+
 
 
 function reset()
@@ -76,7 +82,7 @@ function reset()
     
     //create the number of blanks
     
-    numBlanks = lettersInWord.length;
+	numberOfBlanks = lettersInWord.length;
 	
 	//Sets options to reset to
     
@@ -85,7 +91,7 @@ function reset()
 	guessesLeft = 10;
 	wrongLetters =[];
 	blanksAndSuccesses =[];
-	doubleWord = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+	possibleKeyInputs = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 	test=false;
     
     startGame();
@@ -98,44 +104,51 @@ function startGame()
 	//Splits the randomly choosen pokemon into individual letters
 	lettersInWord = choosenWord.split('');
 	//Get the number of blanks in the randomly choosen pokemon
-	numBlanks = lettersInWord.length;
+	numberOfBlanks = lettersInWord.length;
 	
 	//Reset Function
-	//===========================================================
+
 	rightGuessCounter = 0;
 	guessesLeft = 10;
 	wrongLetters =[];
 	blanksAndSuccesses =[];
-	doubleWord = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+	possibleKeyInputs = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 
 	//fill blanks created by function
-	for(var i = 0; i< numBlanks; i++)
+	for(var i = 0; i< numberOfBlanks; i++)
 	{
 		blanksAndSuccesses.push('_');
 		document.getElementById('wordToGuess').innerHTML = blanksAndSuccesses;
 	}
 
-	//Pushes to HTML during game
+	//Pushes to HTML during game and console logs
 	document.getElementById('wordToGuess').innerHTML = blanksAndSuccesses.join(' ');
+
 	document.getElementById('numGuesses').innerHTML = guessesLeft;
+	
 	document.getElementById('winCounter').innerHTML = winCount;
+	
 	document.getElementById('lossCounter').innerHTML = loseCount;
-    document.getElementById('wrongGuesses').innerHTML = wrongLetters;
-    
+	
+	document.getElementById('wrongGuesses').innerHTML = wrongLetters;
+
 	console.log(choosenWord);
+
 	console.log(lettersInWord);
-	console.log(numBlanks);
+	
+	console.log(numberOfBlanks);
+	
 	console.log(blanksAndSuccesses);
 }
 
 function compareLetters(userKey)
 {
-				console.log('Code is working');
-				//If user key exist in choosen word then perform this function 
+				console.log('codeworking');
+				//If input exists in word, call this function 
 				if(choosenWord.indexOf(userKey) > -1)
 				{
-					//Loops depending on the amount of blanks 
-					for(var i = 0; i < numBlanks; i++)
+					//Loops vary depending on the amount of blanks 
+					for(var i = 0; i < numberOfBlanks; i++)
 					{
 						//Fills in right index with user key
 						if(lettersInWord[i] === userKey)
@@ -148,18 +161,18 @@ function compareLetters(userKey)
 					
 					console.log(blanksAndSuccesses);
 				}
-				//Incorrect guesses
+				//Incorrect guesses/inputs
 				else
 				{
 					wrongLetters.push(userKey);
 					guessesLeft--;
 
-					//Changes HTML
+					//pushes changes to HTML and logs
 					document.getElementById('numGuesses').innerHTML = guessesLeft;
 					document.getElementById('wrongGuesses').innerHTML = wrongLetters;
 				
-					console.log('Wrong Letters = ' + wrongLetters);
-					console.log('Guesses left are ' + guessesLeft);
+					console.log('Wrong Guesses = ' + wrongLetters);
+					console.log('Guesses left is ' + guessesLeft);
 				}
 			
 // declare winloss function to recall at end of game
@@ -168,7 +181,7 @@ function compareLetters(userKey)
 function winOrLoss()
 {
 	// When number blanks if filled with correct letters, then alert player of win++
-	if(rightGuessCounter === numBlanks)
+	if(rightGuessCounter === numberOfBlanks)
 	{
 		// Win count F=function, increases wins by 1 each time (++)
 		winCount++;
@@ -208,16 +221,12 @@ document.onkeyup = function(event)
 
 	var letterGuessed = event.key;
 
-	for(var i = 0; i < doubleWord.length; i++)
+	for(var i = 0; i < possibleKeyInputs.length; i++)
 	{	
-		if(letterGuessed === doubleWord[i] && test === true)
+		if(letterGuessed === possibleKeyInputs[i] && test === true)
 		{
-			var spliceWord = doubleWord.splice(i,1);
-			
-
-			console.log('Double word is = ' + doubleWord[i])
-			console.log('Spliced Word is = ' + spliceWord);
-
+			var spliceWord = possibleKeyInputs.splice(i,1);
+		
 			compareLetters(letterGuessed);
 
 			// Call win or loss function

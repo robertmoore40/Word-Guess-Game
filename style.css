@@ -1,0 +1,23 @@
+.container
+{
+    width: 50%;
+    float:left;
+}
+
+.container-2{
+    width: 50%;
+    float:right;
+}
+
+
+
+.jumbotron{
+    color:black;
+    text-align:center;
+    background-color:aliceblue;
+    
+}
+
+.panel-default>.panel-heading {
+    background-color:aliceblue;
+}
