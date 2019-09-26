@@ -1,18 +1,8 @@
-// Used to record how many times a letter can be pressed
+// Used to record how many times a letter can be pressed. Once a guess has been tried, it cannot be tried again
 
-var doubleWord = ['a','b','c',
-				  'd','e','f',
-				  'g','h','i',
-				  'j','k','l',
-				  'm','n','o',
-				  'p','q','r',
-				  's','t','u',
-				  'v','w','x',
-				  'y','z'];
+var doubleWord = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 
-
-//Holds the all the words
-
+//Array containing possible pokemon
 
 var chooseRandomPokemon =[
     "pikachu",
@@ -38,28 +28,29 @@ var chooseRandomPokemon =[
     "mewtow",
     "porygon",
     "jolteon"
-        ];
-//Holds choosenWord
+		];
+		
+//Holds chooseRandomPokemon
 
 var choosenWord = "";
 
-//Holds letters in word
+//Holds letters in pokemon chosen
 
 var lettersInWord = [];
 
-//Holds number of blanks in word
+//Holds number of blanks in pokemon chosen
 
 var numBlanks = 0;
 
-//Holds Blanks and successful guesses
+//Holds blanks for created array and successful guesses
 
 var blanksAndSuccesses =[];
 
-//Holds Wrong guesses
+//Holds wrong guesses
 
 var wrongLetters = [];
 
-//Counters
+//Counters for winning and losing
 
 var winCount = 0;
 var loseCount = 0;
@@ -81,27 +72,18 @@ function reset()
     
     lettersInWord = choosenWord.split('');
     
-    //Get the number of blanks
+    //create the number of blanks
     
     numBlanks = lettersInWord.length;
 	
-	//RESET
-	//===========================================================
+	//Sets options to reset to
     
     letterGuessed = 0;
 	rightGuessCounter = 0;
 	guessesLeft = 10;
 	wrongLetters =[];
 	blanksAndSuccesses =[];
-	doubleWord = ['a','b','c',
-					  'd','e','f',
-					  'g','h','i',
-					  'j','k','l',
-					  'm','n','o',
-					  'p','q','r',
-					  's','t','u',
-					  'v','w','x',
-					  'y','z'];
+	doubleWord = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 	test=false;
     
     startGame();
@@ -111,9 +93,9 @@ function startGame()
 {
 	//Chooses word randombly from the chooseRandomPokemon
 	choosenWord = chooseRandomPokemon[Math.floor(Math.random() * chooseRandomPokemon.length)];
-	//Splits the choosen word into individual letters
+	//Splits the randomly choosen pokemon into individual letters
 	lettersInWord = choosenWord.split('');
-	//Get the number of blanks
+	//Get the number of blanks in the randomly choosen pokemon
 	numBlanks = lettersInWord.length;
 	
 	//RESET
@@ -122,24 +104,16 @@ function startGame()
 	guessesLeft = 10;
 	wrongLetters =[];
 	blanksAndSuccesses =[];
-	doubleWord = ['a','b','c',
-					  'd','e','f',
-					  'g','h','i',
-					  'j','k','l',
-					  'm','n','o',
-					  'p','q','r',
-					  's','t','u',
-					  'v','w','x',
-					  'y','z'];
+	doubleWord = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
 
-	//Populate blanks
+	//fill blanks created by function
 	for(var i = 0; i< numBlanks; i++)
 	{
 		blanksAndSuccesses.push('_');
 		document.getElementById('wordToGuess').innerHTML = blanksAndSuccesses;
 	}
 
-	//Changes HTML 
+	//Pushes to HTML during game
 	document.getElementById('wordToGuess').innerHTML = blanksAndSuccesses.join(' ');
 	document.getElementById('numGuesses').innerHTML = guessesLeft;
 	document.getElementById('winCounter').innerHTML = winCount;
@@ -147,7 +121,7 @@ function startGame()
     document.getElementById('wrongGuesses').innerHTML = wrongLetters;
     
 
-	// Testing / Debugging
+
 	console.log(choosenWord);
 	console.log(lettersInWord);
 	console.log(numBlanks);
@@ -171,51 +145,51 @@ function compareLetters(userKey)
 							document.getElementById('wordToGuess').innerHTML = blanksAndSuccesses.join(' ');
 						}	
 					}
-					//Test / Debug
+					
 					console.log(blanksAndSuccesses);
 				}
-				//Wrong Keys
+				//Incorrect guesses
 				else
 				{
 					wrongLetters.push(userKey);
 					guessesLeft--;
+
 					//Changes HTML
 					document.getElementById('numGuesses').innerHTML = guessesLeft;
 					document.getElementById('wrongGuesses').innerHTML = wrongLetters;
-					//Test / Debug
+				
 					console.log('Wrong Letters = ' + wrongLetters);
 					console.log('Guesses left are ' + guessesLeft);
 				}
 			
-			
+// declare winloss function to recall at end of game
 		
 }
-function winLose()
+function winOrLoss()
 {
-	// When number blanks if filled with right words then you win
+	// When number blanks if filled with correct letters, then alert player of win++
 	if(rightGuessCounter === numBlanks)
 	{
-		// Win Count Function
+		// Win count F=function, increases wins by 1 each time (++)
 		winCount++;
 		//Changes HTML
 		document.getElementById('winCounter').innerHTML = winCount;
-		alert("You win !You're the best that ever was!");
+		alert(" You win! You're the best that ever was!");
 		reset();
 	}
-	// When number of Guesses reaches 0 then You lose
+	// When number of guesses reaches 0 then alert player of loss - call back reset function in order to zero guesses
 	else if(guessesLeft === 0)
 	{
-		//Counts losses
+		//Loss count function, increases losses by 1 each time (++)
 		loseCount++;
 		//Changes HTML
 		document.getElementById('lossCounter').innerHTML = loseCount;
-		alert("Consider joining team rocket");
+		alert(" Consider joining team rocket - or try again");
 		reset();
 	}
 }
 
-// Game Code
-
+// Game Code, call with startGame()
 
 startGame();
 
@@ -228,12 +202,13 @@ document.onkeyup = function(event)
 		if(letterGuessed === doubleWord[i] && test === true)
 		{
 			var spliceDword = doubleWord.splice(i,1);
-			//Test / Debug
+			
+
 			console.log('Double word is = ' + doubleWord[i])
 			console.log('Spliced Word is = ' + spliceDword);
 
 			compareLetters(letterGuessed);
-			winLose();
+			winOrLoss();
 		}
 	}		
 		
