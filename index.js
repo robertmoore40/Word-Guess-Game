@@ -1,6 +1,4 @@
-// Used to record how many times a letter can be pressed. Once a guess has been tried, it cannot be tried again
-
-var doubleWord = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+// Javascript Code
 
 //Array containing possible pokemon
 
@@ -29,7 +27,11 @@ var chooseRandomPokemon =[
     "porygon",
     "jolteon"
 		];
-		
+
+// Used to record how many times a letter can be pressed. Once a guess has been tried, it cannot be tried again
+
+var doubleWord = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'];
+
 //Holds chooseRandomPokemon
 
 var choosenWord = "";
@@ -68,7 +70,7 @@ function reset()
     
 	choosenWord = chooseRandomPokemon[Math.floor(Math.random() * chooseRandomPokemon.length)];
     
-    //Splits the choosen word into individual letters
+    //Splits the chosen word into individual letters
     
     lettersInWord = choosenWord.split('');
     
@@ -98,7 +100,7 @@ function startGame()
 	//Get the number of blanks in the randomly choosen pokemon
 	numBlanks = lettersInWord.length;
 	
-	//RESET
+	//Reset Function
 	//===========================================================
 	rightGuessCounter = 0;
 	guessesLeft = 10;
@@ -120,8 +122,6 @@ function startGame()
 	document.getElementById('lossCounter').innerHTML = loseCount;
     document.getElementById('wrongGuesses').innerHTML = wrongLetters;
     
-
-
 	console.log(choosenWord);
 	console.log(lettersInWord);
 	console.log(numBlanks);
@@ -130,7 +130,7 @@ function startGame()
 
 function compareLetters(userKey)
 {
-				console.log('WORKING!');
+				console.log('Code is working');
 				//If user key exist in choosen word then perform this function 
 				if(choosenWord.indexOf(userKey) > -1)
 				{
@@ -175,16 +175,25 @@ function winOrLoss()
 		//Changes HTML
 		document.getElementById('winCounter').innerHTML = winCount;
 		alert(" You win! You're the best that ever was!");
+
+		// calls reset function
+
 		reset();
 	}
 	// When number of guesses reaches 0 then alert player of loss - call back reset function in order to zero guesses
 	else if(guessesLeft === 0)
 	{
 		//Loss count function, increases losses by 1 each time (++)
+
 		loseCount++;
+		
 		//Changes HTML
+		
 		document.getElementById('lossCounter').innerHTML = loseCount;
 		alert(" Consider joining team rocket - or try again");
+
+		// calls reset function
+
 		reset();
 	}
 }
@@ -196,18 +205,23 @@ startGame();
 document.onkeyup = function(event)
 {
 	test = true;
+
 	var letterGuessed = event.key;
+
 	for(var i = 0; i < doubleWord.length; i++)
 	{	
 		if(letterGuessed === doubleWord[i] && test === true)
 		{
-			var spliceDword = doubleWord.splice(i,1);
+			var spliceWord = doubleWord.splice(i,1);
 			
 
 			console.log('Double word is = ' + doubleWord[i])
-			console.log('Spliced Word is = ' + spliceDword);
+			console.log('Spliced Word is = ' + spliceWord);
 
 			compareLetters(letterGuessed);
+
+			// Call win or loss function
+
 			winOrLoss();
 		}
 	}		
